@@ -1,0 +1,22 @@
+cmake_minimum_required(VERSION 3.25)
+MESSAGE("${CMAKE_SYSTEM_NAME}")
+# Setting vcpkg.
+IF (UNIX)
+    MESSAGE(STATUS "current platform: Linux ")
+    set(VCPKG_ROOT "~/dev/vcpkg")
+    include_directories("${VCPKG_ROOT}/installed/x64-linux/include")
+ELSEIF (WIN32)
+    MESSAGE(STATUS "current platform: Windows")
+    set(VCPKG_ROOT "D:/dev/vcpkg")
+    include_directories("${VCPKG_ROOT}/installed/x64-windows/include")
+ENDIF ()
+set(CMAKE_TOOLCHAIN_FILE "${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
+
+project(ReflectiveShadowMapsRemake)
+set(CMAKE_CXX_STANDARD 14)
+add_executable(ReflectiveShadowMapsRemake
+        src/main.cpp src/include/model/Light.h src/include/model/Mesh.h src/include/model/Camera.h src/include/model/GameObject.h)
+find_package(glfw3 CONFIG REQUIRED)
+target_link_libraries(ReflectiveShadowMapsRemake PRIVATE glfw)
+find_package(glm CONFIG REQUIRED)
+target_link_libraries(ReflectiveShadowMapsRemake PRIVATE glm::glm)
