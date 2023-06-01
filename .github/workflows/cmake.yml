@@ -20,6 +20,8 @@ jobs:
       VCPKG_ROOT: '${{ github.workspace }}/modules/vcpkg'
     steps:
       - uses: actions/checkout@v3
+        with:
+          submodules: true
 
       - uses: lukka/get-cmake@latest
       - name: List $RUNNER_WORKSPACE before vcpkg is setup
