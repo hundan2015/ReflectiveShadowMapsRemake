@@ -6,33 +6,25 @@
 #define REFLECTIVESHADOWMAPSREMAKE_GAMEOBJECT_H
 
 #include <glm/gtc/quaternion.hpp>
+
 #include "glm/glm.hpp"
 
-using glm::vec3;
 using glm::qua;
+using glm::vec3;
 namespace renderer {
-    class GameObject {
-    public:
-        glm::vec3 position = {0, 0, 0};
-        glm::qua<float> rotation;
+class GameObject {
+    glm::vec3 position_ = {0, 0, 0};
+    glm::qua<float> rotation_;
 
-        void MoveTo(vec3 pos) {
-            position = pos;
-        }
+   public:
+    void MoveTo(vec3 pos) { position_ = pos; }
+    vec3 GetPosition() { return position_; }
+    void Move(vec3 pos) { position_ += pos; }
 
-        void Move(vec3 pos) {
-            position += pos;
-        }
+    void Rotate(vec3 rot) { rotation_ *= qua<float>(glm::radians(rot)); }
+    qua<float> GetRotation() { return rotation_; };
+    void RotateTo(vec3 rot) { rotation_ = qua<float>(glm::radians(rot)); }
+};
+}  // namespace renderer
 
-        void Rotate(vec3 rot) {
-            rotation *= qua<float>(glm::radians(rot));
-        }
-
-        void RotateTo(vec3 rot) {
-            rotation = qua<float>(glm::radians(rot));
-        }
-    };
-}
-
-
-#endif //REFLECTIVESHADOWMAPSREMAKE_GAMEOBJECT_H
+#endif  // REFLECTIVESHADOWMAPSREMAKE_GAMEOBJECT_H
