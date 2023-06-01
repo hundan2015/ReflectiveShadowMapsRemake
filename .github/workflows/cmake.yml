@@ -30,6 +30,7 @@ jobs:
         uses: lukka/run-vcpkg@main
         id: runvcpkg
         with:
+          vcpkgDirectory: '${{ github.workspace }}/modules/vcpkg'
           vcpkgJsonGlob: '${{ github.workspace }}/vcpkg.json'
 
       - name: List $RUNNER_WORKSPACE before build
