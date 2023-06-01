@@ -23,9 +23,9 @@ jobs:
 
       - name: Get Cmake(Linux)
         if: ${{ runner.os == 'Linux'}}
-        run:
-          ls ${{ env.VCPKG_ROOT }}
-          ${{ env.VCPKG_ROOT }}/bootstrap-vcpkg.sh
+        run: |
+          cd  ${{ env.VCPKG_ROOT }}
+          ./bootstrap-vcpkg.sh
 
       - name: Configure CMake
         # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
