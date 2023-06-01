@@ -23,3 +23,11 @@ find_package(glm CONFIG REQUIRED)
 target_link_libraries(ReflectiveShadowMapsRemake PRIVATE glm::glm)
 find_package(glad CONFIG REQUIRED)
 target_link_libraries(ReflectiveShadowMapsRemake PRIVATE glad::glad)
+find_package(assimp CONFIG REQUIRED)
+target_link_libraries(ReflectiveShadowMapsRemake PUBLIC assimp::assimp)
+
+add_custom_command(TARGET ${PROJECT_NAME}
+        POST_BUILD
+        COMMAND echo "Move assets files. From ${CMAKE_SOURCE_DIR}/src/assets to ${CMAKE_BUILD_RPATH}/assets"
+        COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/src/assets ${CMAKE_BUILD_RPATH}/assets
+        )
