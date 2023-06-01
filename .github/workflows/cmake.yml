@@ -24,7 +24,7 @@ jobs:
       - name: Get Cmake(Linux)
         if: ${{ runner.os == 'Linux'}}
         run:
-          ls ${{ env.VCPKG_ROOT }
+          ls ${{ env.VCPKG_ROOT }}
           ${{ env.VCPKG_ROOT }}/bootstrap-vcpkg.sh
 
       - name: Configure CMake
