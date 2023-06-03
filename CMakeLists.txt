@@ -14,7 +14,7 @@ set(CMAKE_TOOLCHAIN_FILE "${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
 project(ReflectiveShadowMapsRemake)
 set(CMAKE_CXX_STANDARD 14)
 add_executable(ReflectiveShadowMapsRemake
-        src/main.cpp src/include/model/Light.h src/include/model/Mesh.h src/include/model/GameObject.h src/include/model/Material.h src/src/controller/ResoureManager.cpp src/include/controller/ResourceManager.h src/src/controller/Engine.cpp src/include/controller/Engine.h)
+        src/main.cpp)
 include_directories("src/include")
 find_package(glfw3 CONFIG REQUIRED)
 target_link_libraries(ReflectiveShadowMapsRemake PRIVATE glfw)
@@ -27,6 +27,6 @@ target_link_libraries(ReflectiveShadowMapsRemake PUBLIC assimp::assimp)
 
 add_custom_command(TARGET ${PROJECT_NAME}
         POST_BUILD
-        COMMAND echo "Move assets files. From ${CMAKE_SOURCE_DIR}/src/assets to ${CMAKE_BUILD_RPATH}/assets"
-        COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/src/assets ${CMAKE_BUILD_RPATH}/assets
+        COMMAND echo "Move assets files. From ${CMAKE_SOURCE_DIR}/src/assets to ${CMAKE_CURRENT_BINARY_DIR}/assets"
+        COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/src/assets "${CMAKE_CURRENT_BINARY_DIR}/assets"
         )
