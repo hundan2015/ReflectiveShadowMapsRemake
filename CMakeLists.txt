@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.25)
+
 MESSAGE("${CMAKE_SYSTEM_NAME}")
 # Setting vcpkg.
 set(VCPKG_ROOT "${CMAKE_SOURCE_DIR}/modules/vcpkg")
@@ -22,8 +23,10 @@ find_package(glm CONFIG REQUIRED)
 target_link_libraries(ReflectiveShadowMapsRemake PRIVATE glm::glm)
 find_package(glad CONFIG REQUIRED)
 target_link_libraries(ReflectiveShadowMapsRemake PRIVATE glad::glad)
-find_package(assimp CONFIG REQUIRED)
-target_link_libraries(ReflectiveShadowMapsRemake PUBLIC assimp::assimp)
+#[[find_package(assimp CONFIG REQUIRED)
+target_link_libraries(ReflectiveShadowMapsRemake PUBLIC assimp::assimp)]]
+find_package(Stb REQUIRED)
+target_include_directories(ReflectiveShadowMapsRemake PRIVATE ${Stb_INCLUDE_DIR})
 
 #[[add_custom_command(TARGET ${PROJECT_NAME}
         POST_BUILD
