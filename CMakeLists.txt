@@ -25,8 +25,11 @@ target_link_libraries(ReflectiveShadowMapsRemake PRIVATE glad::glad)
 find_package(assimp CONFIG REQUIRED)
 target_link_libraries(ReflectiveShadowMapsRemake PUBLIC assimp::assimp)
 
-add_custom_command(TARGET ${PROJECT_NAME}
+#[[add_custom_command(TARGET ${PROJECT_NAME}
         POST_BUILD
         COMMAND echo "Move assets files. From ${CMAKE_SOURCE_DIR}/src/assets to ${CMAKE_CURRENT_BINARY_DIR}/assets"
-        COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/src/assets "${CMAKE_CURRENT_BINARY_DIR}/assets"
-        )
+        COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/src/assets/* "${CMAKE_CURRENT_BINARY_DIR}/assets/*"
+        )]]
+
+file(GLOB allCopyFiles  "${CMAKE_SOURCE_DIR}/src/assets/*")
+file(COPY ${allCopyFiles} DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/assets/)
