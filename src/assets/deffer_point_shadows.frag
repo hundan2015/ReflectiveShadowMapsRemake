@@ -80,7 +80,7 @@ void main()
     lighting = ((ambient + (1.0 - shadow) * (diffuse + specular)) * color);
     //lighting = fs_in.Normal;
 
-    const int count = 400;
+    const int count = 100;
     for (int i = 0;i < count; ++i) {
         vec3 dir = normalize(lightPos - fs_in.FragPos);
         vec3 right = normalize(cross(dir, fs_in.Normal));
