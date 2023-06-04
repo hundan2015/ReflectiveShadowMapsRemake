@@ -114,7 +114,7 @@ int main() {
     // build and compile shaders
     // -------------------------
     Shader shader("assets/deffer_vertex.vert",
-                  "assets/deffer_point_shadows.frag");
+                  "assets/deffer_point_shadows_remake.frag");
     Shader simpleDepthShader("assets/3.2.1.point_shadows_depth.vert",
                              "assets/3.2.1.point_shadows_depth.frag",
                              "assets/3.2.1.point_shadows_depth.geom");
