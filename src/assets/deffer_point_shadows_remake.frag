@@ -81,31 +81,31 @@ void main()
     vec3 diffuse = diff * lightColor;
     float shadow = ShadowCalculation(FragPos);
     lighting = diffuse * (1 - shadow);
+    //lighting = vec3(0);
 
     vec3 up = normalize(cross(fragToLight, normal));
     vec3 right = normalize(cross(up, fragToLight));
     const int count = 1024;
     vec3 temp = vec3(0);
-    for (int i = 0;i < 6; ++i) {
-        for (int j = 0;j < count; ++j) {
-            float sigma1 = random(10);
-            float sigma2 = rand(uint(110));
-            float r_max = 512;
-            float posX = r_max * sigma1 * sin(2 * 3.14 * sigma2);
-            float posY = r_max * sigma1 * cos(2 * 3.14 * sigma2);
-            vec3 sampleDirection[] = vec3[6](vec3(1, 0, 0), vec3(-1, 0, 0), vec3(0, 1, 0), vec3(0, -1, 0), vec3(0, 0, -1), vec3(0, 0, 1));
-            vec3 sampleLightDirection = sampleDirection[i] + posX * up + posY * right;
-            float sampleLightDepth = texture(depthMap, sampleLightDirection).r - 0.505; // Why?????
-            sampleLightDepth *= far_plane;
-            vec3 sampleLightPos = lightPos + sampleLightDirection * sampleLightDepth;
-            vec3 fragToSampleLight = normalize(sampleLightPos - FragPos);
-            float sampleLightDiff = max(dot(normal, fragToSampleLight), 0.0);
-            vec3 sample_diffuse = sampleLightDiff * lightColor;
-            lighting += sample_diffuse / (count * 10);
-            //temp += sampleLightPos;
-        }
+    for (int j = 0;j < count; ++j) {
+        float sigma1 = random(j);
+        float sigma2 = rand(uint(j));
+        float r_max = 512;
+        float posX = r_max * sigma1 * sin(2 * 3.14 * sigma2);
+        float posY = r_max * sigma1 * cos(2 * 3.14 * sigma2);
+        vec3 sampleDirection = fragToLight;
+        vec3 sampleLightDirection = -sampleDirection + posX * up + posY * right;
+        float sampleLightDepth = texture(depthMap, sampleLightDirection).r; // Why?????
+        sampleLightDepth *= far_plane;
+        vec3 sampleLightPos = lightPos + sampleLightDirection * sampleLightDepth;
+        vec3 fragToSampleLight = normalize(sampleLightPos - FragPos);
+        float sampleLightDiff = max(dot(normal, fragToSampleLight), 0.0);
+        vec3 sample_diffuse = sampleLightDiff * lightColor;
+        lighting += sample_diffuse / count;
+        //temp += sampleLightPos;
     }
+
     //lighting = temp / (count * 10);
 
-    FragColor = vec4(lighting, 1.0);
+    FragColor = vec4(lighting * color, 1.0);
 }
