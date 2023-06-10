@@ -6,9 +6,9 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <stb_image.h>
-#include <assimp/Importer.hpp>
+/*#include <assimp/Importer.hpp>
 #include <assimp/scene.h>
-#include <assimp/postprocess.h>
+#include <assimp/postprocess.h>*/
 
 #include <learnopengl/mesh.h>
 #include <learnopengl/shader.h>
@@ -23,7 +23,7 @@ using namespace std;
 
 unsigned int TextureFromFile(const char *path, const string &directory, bool gamma = false);
 
-class Model 
+/*class Model
 {
 public:
     // model data 
@@ -200,10 +200,10 @@ private:
         }
         return textures;
     }
-};
+};*/
 
 
-unsigned int TextureFromFile(const char *path, const string &directory, bool gamma)
+/*unsigned int TextureFromFile(const char *path, const string &directory, bool gamma)
 {
     string filename = string(path);
     filename = directory + '/' + filename;
@@ -241,5 +241,5 @@ unsigned int TextureFromFile(const char *path, const string &directory, bool gam
     }
 
     return textureID;
-}
+}*/
 #endif

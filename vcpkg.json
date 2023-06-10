@@ -1,9 +1,6 @@
 {
   "dependencies": [
     {
-      "name": "assimp"
-    },
-    {
       "name": "glad",
       "$comment": "    # this is heuristically generated, and may not be correct\n\n    find_package(glad CONFIG REQUIRED)\n\n    target_link_libraries(main PRIVATE glad::glad)\n"
     },
@@ -12,6 +9,9 @@
     },
     {
       "name": "glm"
+    },
+    {
+      "name": "stb"
     }
   ]
 }
