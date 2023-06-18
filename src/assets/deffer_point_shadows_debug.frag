@@ -150,6 +150,6 @@ void main()
         //lighting =sampleLightPos ;
         //lighting = sampleDir - dir;
     }
-    FragColor = vec4(lighting, 1.0);
-    //FragColor = vec4(fs_in.Albedo, 1);
+    //FragColor = vec4(lighting, 1.0);
+    FragColor = vec4(, 1);
 }
