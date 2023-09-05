@@ -16,5 +16,6 @@ cd build
 cmake ..
 cmake --build .
 ```
+You need to copy the asset folder to the folder where the executable file is located. Finally you can run the program and see the result.
 
 Then you can use your own way to build this Cmake project. And the CMake would auto download the libraries this project need.
